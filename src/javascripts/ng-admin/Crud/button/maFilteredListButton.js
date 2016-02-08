@@ -27,7 +27,7 @@ export default function maFilteredListButtonDirective() {
             size: '@'
         },
         link: function (scope) {
-            scope.label = scope.label || ('See all related ' + scope.entityName);
+            scope.label = scope.label || ('Zobacz powiązane ' + scope.entityName);
             scope.stateParams = { 'entity': scope.entityName, 'search': scope.filter() };
         },
         template:

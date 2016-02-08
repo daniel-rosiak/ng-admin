@@ -33,7 +33,7 @@ export default function maDatagrid() {
                 </a>
             </th>
             <th ng-if="datagrid.shouldDisplayActions" class="ng-admin-column-actions">
-                Actions
+                
             </th>
         </tr>
     </thead>

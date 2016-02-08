@@ -20,7 +20,7 @@ export default function maShowButtonDirective($state) {
             stateParams.entity = entityName;
             stateParams.id = scope.entry().identifierValue;
             scope.stateParams = stateParams;
-            scope.label = scope.label || 'Show';
+            scope.label = scope.label || 'Szczegóły';
         },
         template:
 ` <a class="btn btn-default" ng-class="size ? \'btn-\' + size : \'\'" ui-sref="show(stateParams)">

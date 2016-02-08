@@ -20,7 +20,7 @@ export default function maDeleteButtonDirective($state) {
             stateParams.entity = entityName;
             stateParams.id = scope.entry().identifierValue;
             scope.stateParams = stateParams;
-            scope.label = scope.label || 'Delete';
+            scope.label = scope.label || 'Usuń';
         },
         template:
 ` <a class="btn btn-default" ng-class="size ? \'btn-\' + size : \'\'" ui-sref="delete(stateParams)">

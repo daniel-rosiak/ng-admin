@@ -18,7 +18,7 @@ export default function maListButtonDirective($state) {
             var stateParams = entityName == $state.params.entity ? { ...$state.params } : {};
             stateParams.entity = entityName;
             scope.stateParams = stateParams;
-            scope.label = scope.label || 'List';
+            scope.label = scope.label || 'Lista';
         },
         template:
 ` <a class="btn btn-default" ng-class="size ? \'btn-\' + size : \'\'" ui-sref="list(stateParams)">

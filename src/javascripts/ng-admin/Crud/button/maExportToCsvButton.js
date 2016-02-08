@@ -7,7 +7,7 @@ export default function maExportToCsvButton ($stateParams, Papa, notification, A
             datastore: '&'
         },
         link: function(scope) {
-            scope.label = scope.label || 'Export';
+            scope.label = scope.label || 'Eksport';
 
             scope.datastore = scope.datastore();
             scope.entity = scope.entity();

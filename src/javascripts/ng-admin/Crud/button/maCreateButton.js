@@ -20,7 +20,7 @@ export default function maCreateButtonDirective($state) {
             stateParams.entity = entityName;
             stateParams.defaultValues = scope.defaultValues();
             scope.stateParams = stateParams;
-            scope.label = scope.label || 'Create';
+            scope.label = scope.label || 'Utwórz';
         },
         template:
 ` <a class="btn btn-default" ng-class="size ? \'btn-\' + size : \'\'" ui-sref="create(stateParams)">
