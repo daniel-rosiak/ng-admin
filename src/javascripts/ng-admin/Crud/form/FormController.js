@@ -26,7 +26,7 @@ export default class FormController {
 
     validateEntry() {
         if (!this.form.$valid) {
-            this.notification.log('invalid form', { addnCls: 'humane-flatty-error' });
+            this.notification.log('niepoprawny formularz', { addnCls: 'humane-flatty-error' });
             return false;
         }
 
@@ -66,7 +66,7 @@ export default class FormController {
             .then(customHandlerReturnValue => {
                 if (customHandlerReturnValue === false) return;
                 progression.done();
-                notification.log('Element successfully created.', { addnCls: 'humane-flatty-success' });
+                notification.log('Dane zapisano poprawnie.', { addnCls: 'humane-flatty-success' });
                 this.$state.go(this.$state.get(route), { entity: entity.name(), id: entry.identifierValue });
             })
             .catch(error => {
@@ -106,7 +106,7 @@ export default class FormController {
             .then(customHandlerReturnValue => {
                 if (customHandlerReturnValue === false) return;
                 progression.done();
-                notification.log('Changes successfully saved.', { addnCls: 'humane-flatty-success' });
+                notification.log('Zmiany zostały zapisane.', { addnCls: 'humane-flatty-success' });
             })
             .catch(error => {
                 const errorMessage = this.config.getErrorMessageFor(this.view, error);
