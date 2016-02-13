@@ -37,7 +37,7 @@ export default function maChoiceField($compile) {
 
                     var choices = (typeof scope.choices == 'function' && scope.choices()) ? scope.choices() : (field.choices ? field.choices() : []);
                     var attributes = field.attributes();
-                    scope.placeholder = (attributes && attributes.placeholder) || 'Filter values';
+                    scope.placeholder = (attributes && attributes.placeholder) || 'Wartość';
 
                     var template = `
                         <ui-select ng-model="$parent.value" ng-required="v.required" id="{{ name }}" name="{{ name }}">

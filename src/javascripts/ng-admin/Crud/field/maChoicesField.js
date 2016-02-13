@@ -32,7 +32,7 @@ export default function maChoicesField($compile) {
 
                     var choices = field.choices ? field.choices() : [];
                     var attributes = field.attributes();
-                    scope.placeholder = (attributes && attributes.placeholder) || 'Filter values';
+                    scope.placeholder = (attributes && attributes.placeholder) || 'Wartość';
 
                     scope.onRemove = function() {
                         scope.refresh({ $search: this.$select.search })
