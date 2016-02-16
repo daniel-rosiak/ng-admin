@@ -26,7 +26,7 @@ export default class FormController {
 
     validateEntry() {
         if (!this.form.$valid) {
-            this.notification.log('niepoprawny formularz', { addnCls: 'humane-flatty-error' });
+            this.notification.log('Formularz zawiera błędy', { addnCls: 'humane-flatty-error' });
             return false;
         }
 
@@ -78,7 +78,7 @@ export default class FormController {
                 );
                 if (customHandlerReturnValue === false) return;
                 progression.done();
-                notification.log(errorMessage, {addnCls: 'humane-flatty-error'});
+                //notification.log(errorMessage, {addnCls: 'humane-flatty-error'});
             });
     }
 
@@ -117,7 +117,7 @@ export default class FormController {
                 );
                 if (customHandlerReturnValue === false) return;
                 progression.done();
-                notification.log(errorMessage, {addnCls: 'humane-flatty-error'});
+                //notification.log(errorMessage, {addnCls: 'humane-flatty-error'});
             });
     }
 

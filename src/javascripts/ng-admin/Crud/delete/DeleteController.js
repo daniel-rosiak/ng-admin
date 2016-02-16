@@ -45,12 +45,12 @@ export default class DeleteController {
                 },
                 response => {
                     // @TODO: share this method when splitting controllers
-                    var body = response.data;
-                    if (typeof body === 'object') {
-                        body = JSON.stringify(body);
-                    }
+                    // var body = response.data;
+                    // if (typeof body === 'object') {
+                    //     body = JSON.stringify(body);
+                    // }
 
-                    notification.log('Wystąpił błąd : (code: ' + response.status + ') ' + body, {addnCls: 'humane-flatty-error'});
+                    //notification.log('Wystąpił błąd : (code: ' + response.status + ') ' + body, {addnCls: 'humane-flatty-error'});
                 }
             );
     }
