@@ -20,11 +20,11 @@ export default function maShowButtonDirective($state) {
             stateParams.entity = entityName;
             stateParams.id = scope.entry().identifierValue;
             scope.stateParams = stateParams;
-            scope.label = scope.label || 'Szczegóły';
+            scope.label = scope.label || 'Details';
         },
         template:
 ` <a class="btn btn-default" ng-class="size ? \'btn-\' + size : \'\'" ui-sref="show(stateParams)">
-<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;<span class="hidden-xs">{{ ::label }}</span>
+<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;<span class="hidden-xs">{{ ::label | translate }}</span>
 </a>`
     };
 }

@@ -20,11 +20,11 @@ export default function maEditButtonDirective($state) {
             stateParams.entity = entityName;
             stateParams.id = scope.entry().identifierValue;
             scope.stateParams = stateParams;
-            scope.label = scope.label || 'Edytuj';
+            scope.label = scope.label || 'Edit';
         },
         template:
 ` <a class="btn btn-default" ng-class="size ? \'btn-\' + size : \'\'" ui-sref="edit(stateParams)">
-<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;<span class="hidden-xs">{{ ::label }}</span>
+<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;<span class="hidden-xs">{{ ::label | translate }}</span>
 </a>`
     };
 }

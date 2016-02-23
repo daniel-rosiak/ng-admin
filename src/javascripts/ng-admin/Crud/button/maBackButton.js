@@ -17,7 +17,7 @@ export default function maBackButtonDirective($window) {
         },
         template:
 ` <a class="btn btn-default" ng-class="size ? \'btn-\' + size : \'\'" ng-click="back()">
-<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&nbsp;<span class="hidden-xs">{{ label | translate }}</span>
+<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&nbsp;<span class="hidden-xs">{{ ::label | translate }}</span>
 </a>`
     };
 }

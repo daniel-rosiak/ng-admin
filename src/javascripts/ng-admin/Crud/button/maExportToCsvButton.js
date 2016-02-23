@@ -7,7 +7,7 @@ export default function maExportToCsvButton ($stateParams, Papa, notification, A
             datastore: '&'
         },
         link: function(scope) {
-            scope.label = scope.label || 'Eksport';
+            scope.label = scope.label || 'Export';
 
             scope.datastore = scope.datastore();
             scope.entity = scope.entity();
@@ -69,7 +69,7 @@ export default function maExportToCsvButton ($stateParams, Papa, notification, A
         template:
 `<span ng-if="has_export">
     <a class="btn btn-default" ng-click="exportToCsv()">
-        <span class="glyphicon glyphicon-download" aria-hidden="true"></span>&nbsp;<span class="hidden-xs">{{ ::label }}</span>
+        <span class="glyphicon glyphicon-download" aria-hidden="true"></span>&nbsp;<span class="hidden-xs">{{ ::label | translate }}</span>
     </a>
 </span>`
     };
