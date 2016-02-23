@@ -7,7 +7,7 @@ export default function maBatchDeleteButtonDirective($state) {
             label: '@',
         },
         link: function ($scope) {
-            $scope.label = $scope.label || 'Usuń';
+            $scope.label = $scope.label || 'Delete';
 
             $scope.gotoBatchDelete = function () {
                 var ids = $scope.selection().map(function(entry) {
@@ -22,7 +22,7 @@ export default function maBatchDeleteButtonDirective($state) {
         },
         template:
 `<span ng-click="gotoBatchDelete()">
-<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;<span class="hidden-xs">{{ ::label }}</span>
+<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;<span class="hidden-xs">{{ label | translate }}</span>
 </span>`
     };
 }

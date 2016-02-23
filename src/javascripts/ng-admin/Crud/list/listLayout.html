@@ -10,9 +10,9 @@
             </ma-view-actions>
 
             <h1 compile="::llCtrl.view.title()">
-                {{ ::llCtrl.view.entity.label() | humanize | pluralize }} list
+                {{ ::llCtrl.view.entity.label() | humanize | pluralize | translate }} {{ list | translate }}
             </h1>
-            <p class="lead" ng-if="::llCtrl.view.description()" compile="::llCtrl.view.description()">{{ ::llCtrl.view.description() }}</p>
+            <p class="lead" ng-if="::llCtrl.view.description()" compile="::llCtrl.view.description()">{{ ::llCtrl.view.description() | translate }}</p>
         </div>
 
         <ma-filter-form ng-if="llCtrl.hasFilters" filters="llCtrl.enabledFilters" values="llCtrl.search" datastore="::llCtrl.dataStore" remove-filter="::llCtrl.removeFilter"></ma-filter-form>
