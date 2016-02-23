@@ -14,6 +14,6 @@
             <a href ng-if="n != '.'" ng-click="paginationCtrl.setPage(n)">{{ n }}</a>
             <span ng-if="n == '.'">&hellip;</span>
         </li>
-        <li><a href ng-if="paginationCtrl.page != paginationCtrl.nbPages" ng-click="paginationCtrl.setPage(paginationCtrl.page + 1)">{{ 'Next' | translate' }} »</a></li>
+        <li><a href ng-if="paginationCtrl.page != paginationCtrl.nbPages" ng-click="paginationCtrl.setPage(paginationCtrl.page + 1)">{{ 'Next' | translate }} »</a></li>
     </ul>
 </nav>
