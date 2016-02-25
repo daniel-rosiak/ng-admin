@@ -27,8 +27,6 @@ export default function maChoiceField($compile) {
                         }
                     });
 
-                    console.log('maChoiceField 1',scope);
-
                     var refreshAttributes = '';
                     var itemsFilter = '| filter: {label: $select.search}';
                     if (field.type().indexOf('reference') === 0 && field.remoteComplete()) { // FIXME wrong place to do that
@@ -41,10 +39,7 @@ export default function maChoiceField($compile) {
                     var attributes = field.attributes();
                     scope.placeholder = (attributes && attributes.placeholder) || 'Value';
 
-                    //console.log($parent.value);
-                    scope.name = scope.name + '.id';
-
-                    var template = `
+                    var template = `{{$parent.value}}
                         <ui-select ng-model="$parent.value" ng-required="v.required" id="{{ name }}" name="{{ name }}">
                             <ui-select-match allow-clear="{{ !v.required }}" placeholder="{{ placeholder | translate }}">{{ $select.selected.label | translate }}</ui-select-match>
                             <ui-select-choices ${refreshAttributes} repeat="item.value as item in choices ${itemsFilter}  track by $index">
@@ -59,8 +54,6 @@ export default function maChoiceField($compile) {
                     for (var name in attributes) {
                         select.setAttribute(name, attributes[name]);
                     }
-
-                    console.log('maChoiceField 2',this);
 
                     $compile(element.contents())(scope);
                 },
