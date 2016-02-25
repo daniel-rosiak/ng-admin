@@ -39,8 +39,11 @@ export default function maChoiceField($compile) {
                     var attributes = field.attributes();
                     scope.placeholder = (attributes && attributes.placeholder) || 'Value';
                     console.log(choices);
+                    console.log(attributes);
+                    console.log(placeholder);
+                    console.log(scope);
                     var template = `
-                        <ui-select ng-required="v.required" id="{{ name }}" name="{{ name }}">
+                        <ui-select ng-model="$parent.value" ng-required="v.required" id="{{ name }}" name="{{ name }}">
                             <ui-select-match allow-clear="{{ !v.required }}" placeholder="{{ placeholder | translate }}">{{ $select.selected.label | translate }}</ui-select-match>
                             <ui-select-choices ${refreshAttributes} repeat="item.value as item in choices ${itemsFilter}  track by $index">
                                 {{ item.label | translate }}
