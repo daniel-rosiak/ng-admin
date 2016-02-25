@@ -27,6 +27,8 @@ export default function maChoiceField($compile) {
                         }
                     });
 
+                    console.log('maChoiceField 1',scope);
+
                     var refreshAttributes = '';
                     var itemsFilter = '| filter: {label: $select.search}';
                     if (field.type().indexOf('reference') === 0 && field.remoteComplete()) { // FIXME wrong place to do that
@@ -54,6 +56,8 @@ export default function maChoiceField($compile) {
                     for (var name in attributes) {
                         select.setAttribute(name, attributes[name]);
                     }
+
+                    console.log('maChoiceField 2',this);
 
                     $compile(element.contents())(scope);
                 },

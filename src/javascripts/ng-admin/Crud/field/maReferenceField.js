@@ -29,6 +29,8 @@ export default function maReferenceField(ReferenceRefresher) {
                     value: entry.values[identifierName],
                     label: entry.values[field.targetField().name()]
                 }));
+                console.log('maReferenceField 1',initialChoices);
+
                 scope.$broadcast('choices:update', { choices: initialChoices });
             } else {
                 // ui-select doesn't allow to prepopulate autocomplete selects, see https://github.com/angular-ui/ui-select/issues/1197
@@ -40,6 +42,7 @@ export default function maReferenceField(ReferenceRefresher) {
                         });
                 };
             }
+            console.log('maReferenceField 2',scope);
         },
         template: `<ma-choice-field
                 field="field()"
