@@ -41,7 +41,7 @@ export default function maChoiceField($compile) {
                     var attributes = field.attributes();
                     scope.placeholder = (attributes && attributes.placeholder) || 'Value';
 
-                    console.log($parent.value);
+                    //console.log($parent.value);
                     $scope.name = $scope.name + '.id';
 
                     var template = `
