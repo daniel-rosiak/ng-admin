@@ -19,6 +19,7 @@ export default function maReferenceField(ReferenceRefresher) {
                     .getEntries(field.targetEntity().uniqueId + '_choices');
                 const isCurrentValueInInitialEntries = initialEntries.filter(e => e.identifierValue === scope.value).length > 0;
                 if (scope.value && !isCurrentValueInInitialEntries) {
+                    console.log('maReferenceField 3');
                     initialEntries.push(scope.datastore()
                         .getEntries(field.targetEntity().uniqueId + '_values')
                         .filter(entry => entry.values[identifierName] == scope.value)
