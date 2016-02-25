@@ -40,7 +40,6 @@ export default function maReferenceField(ReferenceRefresher) {
                         });
                 };
             }
-            console.log('p',scope);
         },
         template: `<ma-choice-field
                 field="field()"
