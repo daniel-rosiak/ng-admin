@@ -19,7 +19,6 @@ export default function maReferenceField(ReferenceRefresher) {
                     .getEntries(field.targetEntity().uniqueId + '_choices');
                 const isCurrentValueInInitialEntries = initialEntries.filter(e => e.identifierValue === scope.value).length > 0;
                 if (scope.value && !isCurrentValueInInitialEntries) {
-                    console.log('maReferenceField 3');
                     initialEntries.push(scope.datastore()
                         .getEntries(field.targetEntity().uniqueId + '_values')
                         .filter(entry => entry.values[identifierName] == scope.value)
@@ -30,8 +29,6 @@ export default function maReferenceField(ReferenceRefresher) {
                     value: entry.values[identifierName],
                     label: entry.values[field.targetField().name()]
                 }));
-                console.log('maReferenceField 1',initialChoices);
-
                 scope.$broadcast('choices:update', { choices: initialChoices });
             } else {
                 // ui-select doesn't allow to prepopulate autocomplete selects, see https://github.com/angular-ui/ui-select/issues/1197
@@ -43,7 +40,6 @@ export default function maReferenceField(ReferenceRefresher) {
                         });
                 };
             }
-            console.log('maReferenceField 2',scope);
         },
         template: `<ma-choice-field
                 field="field()"
