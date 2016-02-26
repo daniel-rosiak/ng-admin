@@ -49,12 +49,13 @@ export default class FormController {
         var view = this.view;
         var route = !entity.editionView().enabled ? 'show' : 'edit';
         var restEntry = this.$scope.entry.transformToRest(view.fields());
-        restEntry.forEach(function (field, index) {
-            console.log(field, index);
-            if(field !== null && typeof field === 'object' && field.hasOwnProperty('id')) {
-
+        for (var property in restEntry) {
+            if (restEntry.hasOwnProperty(property)) {
+                if(typeof restEntry[property] === 'object' && restEntry[property] != null && restEntry[property].hasOwnProperty('id')) {
+                    restEntry[property + '.id'] = restEntry[property]['id'];
+                }
             }
-        });
+        }
         var entry = null;
         const { progression, notification } = this;
         progression.start();
@@ -95,17 +96,14 @@ export default class FormController {
         }
         var view = this.view;
         var restEntry = this.$scope.entry.transformToRest(view.fields());
-        console.log(restEntry);
         for (var property in restEntry) {
             if (restEntry.hasOwnProperty(property)) {
-                console.log(property);
-                console.log(restEntry[property]);
                 if(typeof restEntry[property] === 'object' && restEntry[property] != null && restEntry[property].hasOwnProperty('id')) {
-                    restEntry[property + '.id'] = restEntry[property]['id'];
+                    //restEntry[property + '.id'] = restEntry[property]['id'];
+                    restEntry[property] = restEntry[property]['id'];
                 }
             }
         }
-        console.log(restEntry);
         var entry = null;
         const { progression, notification } = this;
         progression.start();
