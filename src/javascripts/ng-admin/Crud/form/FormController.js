@@ -99,7 +99,8 @@ export default class FormController {
         for (var property in restEntry) {
             if (restEntry.hasOwnProperty(property)) {
                 console.log(property);
-                if(typeof restEntry[property] === 'object' && restEntry[property].hasOwnProperty('id')) {
+                console.log(restEntry[property]);
+                if(typeof restEntry[property] === 'object' && restEntry[property] != null && restEntry[property].hasOwnProperty('id')) {
                     restEntry[property + '.id'] = restEntry[property]['id'];
                 }
             }
