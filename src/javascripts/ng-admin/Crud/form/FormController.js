@@ -96,6 +96,12 @@ export default class FormController {
         var view = this.view;
         var restEntry = this.$scope.entry.transformToRest(view.fields());
         console.log(restEntry);
+        restEntry.forEach(function (field, index) {
+            console.log(field, index);
+            if(field !== null && typeof field === 'object' && field.hasOwnProperty('id')) {
+
+            }
+        });
         var entry = null;
         const { progression, notification } = this;
         progression.start();
