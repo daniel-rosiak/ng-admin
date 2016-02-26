@@ -99,8 +99,12 @@ export default class FormController {
         for (var property in restEntry) {
             if (restEntry.hasOwnProperty(property)) {
                 console.log(property);
+                if(typeof restEntry[property] === 'object' && restEntry[property].hasOwnProperty('id')) {
+                    restEntry[property + '.id'] = restEntry[property]['id'];
+                }
             }
         }
+        console.log(restEntry);
         var entry = null;
         const { progression, notification } = this;
         progression.start();
