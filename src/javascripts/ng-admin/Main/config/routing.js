@@ -116,13 +116,13 @@ function routing($stateProvider, $urlRouterProvider) {
         template: errorTemplate
     });
 
-    $urlRouterProvider.when('', '/dashboard');
+    // $urlRouterProvider.when('', '/dashboard');
 
-    $urlRouterProvider.otherwise(function($injector, $location) {
-        var state = $injector.get('$state');
-        state.go('ma-404');
-        return $location.path();
-    });
+    // $urlRouterProvider.otherwise(function($injector, $location) {
+    //     var state = $injector.get('$state');
+    //     state.go('ma-404');
+    //     return $location.path();
+    // });
 }
 
 routing.$inject = ['$stateProvider', '$urlRouterProvider'];
