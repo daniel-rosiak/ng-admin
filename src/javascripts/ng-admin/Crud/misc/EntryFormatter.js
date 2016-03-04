@@ -34,6 +34,10 @@ export default class EntryFormatter {
                 };
             case 'template':
                 return function (entry) {
+                    console.log(entry);
+                    console.log(label);
+                    console.log(field);
+                    console.log(field._template(entry));
                     return {
                         name: label,
                         value: field._template(entry)
