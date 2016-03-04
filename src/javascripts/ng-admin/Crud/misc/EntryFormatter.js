@@ -37,6 +37,7 @@ export default class EntryFormatter {
                     console.log(entry);
                     console.log(label);
                     console.log(field);
+                    console.log(field._template);
                     console.log(field._template(entry));
                     return {
                         name: label,
