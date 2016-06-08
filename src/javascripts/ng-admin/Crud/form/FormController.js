@@ -45,12 +45,7 @@ export default class FormController {
         if (!this.validateEntry()) {
             return;
         }
-        console.log(this);
-        console.log(goBack);
-        console.log(addNext);
-        console.log(scope);
-        console.log($event);
-         console.log($scope);
+
         var entity = this.entity;
         var view = this.view;
         var route = !entity.editionView().enabled ? 'show' : 'edit';
@@ -81,7 +76,8 @@ export default class FormController {
                 if (customHandlerReturnValue === false) return;
                 progression.done();
                 notification.log('Dane zapisano poprawnie.', { addnCls: 'humane-flatty-success' });
-                this.$state.go(this.$state.get(route), { entity: entity.name(), id: entry.identifierValue });
+                //this.$state.go(this.$state.get(route), { entity: entity.name(), id: entry.identifierValue });
+                this.$state.go('list', this.$state.params);
             })
             .catch(error => {
                 const errorMessage = this.config.getErrorMessageFor(this.view, error);
@@ -129,6 +125,7 @@ export default class FormController {
                 if (customHandlerReturnValue === false) return;
                 progression.done();
                 notification.log('Zmiany zostały zapisane.', { addnCls: 'humane-flatty-success' });
+                this.$state.go('list', this.$state.params);
             })
             .catch(error => {
                 const errorMessage = this.config.getErrorMessageFor(this.view, error);
