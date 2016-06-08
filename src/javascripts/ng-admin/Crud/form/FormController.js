@@ -45,6 +45,12 @@ export default class FormController {
         if (!this.validateEntry()) {
             return;
         }
+        console.log(this);
+        console.log(goBack);
+        console.log(addNext);
+        console.log(scope);
+        console.log($event);
+         console.log($scope);
         var entity = this.entity;
         var view = this.view;
         var route = !entity.editionView().enabled ? 'show' : 'edit';
