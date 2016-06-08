@@ -76,8 +76,7 @@ export default class FormController {
                 if (customHandlerReturnValue === false) return;
                 progression.done();
                 notification.log('Dane zapisano poprawnie.', { addnCls: 'humane-flatty-success' });
-                //this.$state.go(this.$state.get(route), { entity: entity.name(), id: entry.identifierValue });
-                this.$state.go('list', this.$state.params);
+                this.$state.go(this.$state.get(route), { entity: entity.name(), id: entry.identifierValue });
             })
             .catch(error => {
                 const errorMessage = this.config.getErrorMessageFor(this.view, error);
@@ -125,7 +124,6 @@ export default class FormController {
                 if (customHandlerReturnValue === false) return;
                 progression.done();
                 notification.log('Zmiany zostały zapisane.', { addnCls: 'humane-flatty-success' });
-                this.$state.go('list', this.$state.params);
             })
             .catch(error => {
                 const errorMessage = this.config.getErrorMessageFor(this.view, error);
