@@ -1,10 +1,8 @@
 export default class FormController {
-    constructor($scope, $state, $injector, $translate, previousState, WriteQueries, Configuration, progression, notification, view, dataStore) {
+    constructor($scope, $state, $injector, WriteQueries, Configuration, progression, notification, view, dataStore) {
         this.$scope = $scope;
         this.$state = $state;
         this.$injector = $injector;
-        this.$translate = $translate;
-        this.previousState = previousState;
         this.WriteQueries = WriteQueries;
         this.dataStore = dataStore;
         this.progression = progression;
@@ -28,14 +26,14 @@ export default class FormController {
 
     validateEntry() {
         if (!this.form.$valid) {
-            this.$translate('INVALID_FORM').then(text => this.notification.log(text, { addnCls: 'humane-flatty-error' }));
+            this.notification.log('Formularz zawiera błędy', { addnCls: 'humane-flatty-error' });
             return false;
         }
 
         try {
             this.view.validate(this.$scope.entry);
-        } catch (error) {
-            this.notification.log(error, { addnCls: 'humane-flatty-error' });
+        } catch (e) {
+            this.notification.log(e, { addnCls: 'humane-flatty-error' });
             return false;
         }
 
@@ -47,10 +45,20 @@ export default class FormController {
         if (!this.validateEntry()) {
             return;
         }
-        const { entity, view, $state, progression, notification, $translate } = this;
-        var route = entity.showView().enabled ? 'show' : 'list';
+        var entity = this.entity;
+        var view = this.view;
+        var route = !entity.editionView().enabled ? 'show' : 'edit';
         var restEntry = this.$scope.entry.transformToRest(view.fields());
+        for (var property in restEntry) {
+            if (restEntry.hasOwnProperty(property)) {
+                if(typeof restEntry[property] === 'object' && restEntry[property] != null && restEntry[property].hasOwnProperty('id')) {
+                    //restEntry[property + '.id'] = restEntry[property]['id'];
+                    restEntry[property] = restEntry[property]['id'];
+                }
+            }
+        }
         var entry = null;
+        const { progression, notification } = this;
         progression.start();
         this.WriteQueries
             .createOne(view, restEntry)
@@ -65,13 +73,13 @@ export default class FormController {
             ))
             .then(customHandlerReturnValue => {
                 if (customHandlerReturnValue === false) return;
-                $state.go(this.$state.get(route), { entity: entity.name(), id: entry.identifierValue })
-                    .then(() => progression.done())
-                    .then(() => $translate('CREATION_SUCCESS'))
-                    .then(text => notification.log(text, { addnCls: 'humane-flatty-success' }));
+                progression.done();
+                notification.log('Dane zapisano poprawnie.', { addnCls: 'humane-flatty-success' });
+                //this.$state.go(this.$state.get(route), { entity: entity.name(), id: entry.identifierValue });
+                this.$state.go('list', this.$state.params);
             })
             .catch(error => {
-                const errorMessage = this.config.getErrorMessageFor(this.view, error) | 'ERROR_MESSAGE';
+                const errorMessage = this.config.getErrorMessageFor(this.view, error);
                 const customHandlerReturnValue = view.onSubmitError() && this.$injector.invoke(
                     view.onSubmitError(),
                     view,
@@ -79,10 +87,7 @@ export default class FormController {
                 );
                 if (customHandlerReturnValue === false) return;
                 progression.done();
-                $translate(errorMessage, {
-                    status: error && error.status,
-                    details: error && error.data && typeof error.data === 'object' ? JSON.stringify(error.data) : {}
-                }).then(text => notification.log(text, { addnCls: 'humane-flatty-error' }));
+                //notification.log(errorMessage, {addnCls: 'humane-flatty-error'});
             });
     }
 
@@ -91,9 +96,18 @@ export default class FormController {
         if (!this.validateEntry()) {
             return;
         }
-        const { view, $state, previousState, progression, notification, $translate } = this;
+        var view = this.view;
         var restEntry = this.$scope.entry.transformToRest(view.fields());
+        for (var property in restEntry) {
+            if (restEntry.hasOwnProperty(property)) {
+                if(typeof restEntry[property] === 'object' && restEntry[property] != null && restEntry[property].hasOwnProperty('id')) {
+                    //restEntry[property + '.id'] = restEntry[property]['id'];
+                    restEntry[property] = restEntry[property]['id'];
+                }
+            }
+        }
         var entry = null;
+        const { progression, notification } = this;
         progression.start();
         this.WriteQueries
             .updateOne(view, restEntry, this.originEntityId)
@@ -108,13 +122,12 @@ export default class FormController {
             ))
             .then(customHandlerReturnValue => {
                 if (customHandlerReturnValue === false) return;
-                $state.go(previousState.name, previousState.params)
-                    .then(() => progression.done())
-                    .then(() => $translate('EDITION_SUCCESS'))
-                    .then(text => notification.log(text, { addnCls: 'humane-flatty-success' }));
+                progression.done();
+                notification.log('Zmiany zostały zapisane.', { addnCls: 'humane-flatty-success' });
+                this.$state.go('list', this.$state.params);
             })
             .catch(error => {
-                const errorMessage = this.config.getErrorMessageFor(this.view, error) | 'ERROR_MESSAGE';
+                const errorMessage = this.config.getErrorMessageFor(this.view, error);
                 const customHandlerReturnValue = view.onSubmitError() && this.$injector.invoke(
                     view.onSubmitError(),
                     view,
@@ -122,10 +135,7 @@ export default class FormController {
                 );
                 if (customHandlerReturnValue === false) return;
                 progression.done();
-                $translate(errorMessage, {
-                    status: error && error.status,
-                    details: error && error.data && typeof error.data === 'object' ? JSON.stringify(error.data) : {}
-                }).then(text => notification.log(text, { addnCls: 'humane-flatty-error' }));
+                //notification.log(errorMessage, {addnCls: 'humane-flatty-error'});
             });
     }
 
@@ -133,8 +143,6 @@ export default class FormController {
         this.$scope = undefined;
         this.$state = undefined;
         this.$injector = undefined;
-        this.$translate = undefined;
-        this.previousState = undefined;
         this.WriteQueries = undefined;
         this.dataStore = undefined;
         this.view = undefined;
@@ -142,4 +150,4 @@ export default class FormController {
     }
 }
 
-FormController.$inject = ['$scope', '$state', '$injector', '$translate', 'previousState', 'WriteQueries', 'NgAdminConfiguration', 'progression', 'notification', 'view', 'dataStore'];
+FormController.$inject = ['$scope', '$state', '$injector', 'WriteQueries', 'NgAdminConfiguration', 'progression', 'notification', 'view', 'dataStore'];
