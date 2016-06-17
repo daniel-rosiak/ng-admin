@@ -3,7 +3,11 @@ export default {
     getLinkWidget:   () => '<a ui-sref="{{detailState}}(detailStateParams)">' + module.exports.getReadWidget() + '</a>',
     getFilterWidget: () => `<ma-choice-field field="::field" value="value" choices="::field.filterChoices()"></ma-choice-field>`,
     getWriteWidget:  () => `<div class="row">
-        <ma-choice-field class="col-sm-4 col-md-3" ng-if="!field.validation().required" field="::field" value="$parent.value"></ma-choice-field>
-        <ma-checkbox-field class="col-sm-4 col-md-3" ng-if="!!field.validation().required" field="::field" value="$parent.value"></ma-checkbox-field>
+        <ma-checkbox-field class="col-sm-4 col-md-3" field="::field" value="$parent.value"></ma-checkbox-field>
     </div>`
+
+    //getWriteWidget:  () => `<div class="row">
+    //     <ma-choice-field class="col-sm-4 col-md-3" ng-if="!field.validation().required" field="::field" value="$parent.value"></ma-choice-field>
+    //     <ma-checkbox-field class="col-sm-4 col-md-3" ng-if="!!field.validation().required" field="::field" value="$parent.value"></ma-checkbox-field>
+    // </div>`
 };
