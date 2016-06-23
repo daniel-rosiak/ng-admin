@@ -34,8 +34,9 @@ export default function maField(FieldViewConfiguration, $compile) {
              */
             scope.fieldHasValidation = function() {
                 var input = this.getInput();
+                console.log(scope.type);
                 if(scope) {
-                    if(scope.type != 'choice' && scope.type != 'wysiwyg') {
+                    if(scope.type != 'choices' && scope.type != 'choice' && scope.type != 'wysiwyg') {
                       return input && input.$dirty;  
                     }
                     return input;
