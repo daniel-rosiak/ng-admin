@@ -26,7 +26,7 @@ export default class FormController {
 
     validateEntry() {
         if (!this.form.$valid) {
-            this.notification.log('Formularz zawiera błędy', { addnCls: 'humane-flatty-error' });
+            this.notification.log('Wysłany formularz zawiera błędy.', { addnCls: 'humane-flatty-error' });
             return false;
         }
 
