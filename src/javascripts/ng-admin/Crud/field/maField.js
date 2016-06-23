@@ -60,7 +60,7 @@ export default function maField(FieldViewConfiguration, $compile) {
                 fieldTemplate =
 `<div ng-class="getCssClasses(entry)">
     ${(!field.templateIncludesLabel() && field.getTemplateValue(scope.entry)) || FieldViewConfiguration[type].getWriteWidget()}
-    <span ng-show="fieldHasValidation()" class="glyphicon form-control-feedback" ng-class="fieldIsValid() ? 'glyphicon-ok' : 'glyphicon-remove'"></span>
+    <span ng-show="fieldHasValidation()" class="glyphicon form-control-feedback"></span>
 </div>`;
             } else {
                 fieldTemplate =
