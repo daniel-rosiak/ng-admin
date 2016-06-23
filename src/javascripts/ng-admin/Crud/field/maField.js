@@ -34,13 +34,13 @@ export default function maField(FieldViewConfiguration, $compile) {
              */
             scope.fieldHasValidation = function() {
                 var input = this.getInput();
-                if(scope) {
-                    if(scope.type != 'reference' && scope.type != 'choices' && scope.type != 'choice' && scope.type != 'wysiwyg') {
-                      return input && input.$dirty;  
-                    }
-                    return input;
-                }
-                return input && input.$dirty;
+                // if(scope) {
+                //     if(scope.type != 'reference' && scope.type != 'choices' && scope.type != 'choice' && scope.type != 'wysiwyg') {
+                //       return input && input.$dirty;  
+                //     }
+                //     return input;
+                // }
+                return input; //&& input.$dirty;
             };
 
             scope.fieldIsValid = function() {
@@ -50,7 +50,8 @@ export default function maField(FieldViewConfiguration, $compile) {
 
             scope.getFieldValidationClass = function() {
                 if (this.fieldHasValidation()) {
-                    return this.fieldIsValid() ? 'has-success' : 'has-error';
+                    //return this.fieldIsValid() ? 'has-success' : 'has-error';
+                    return this.fieldIsValid() ? '' : 'has-error';
                 }
             };
 
