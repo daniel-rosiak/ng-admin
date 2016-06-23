@@ -33,17 +33,22 @@ export default function maField(FieldViewConfiguration, $compile) {
              * - Yes otherwise
              */
             scope.fieldHasValidation = function() {
+                console.log('fieldHasValidation');
                 var input = this.getInput();
+                console.log(input);
                 return input && input.$dirty;
             };
 
             scope.fieldIsValid = function() {
+                console.log('fieldIsValid');
                 var input = this.getInput();
+                console.log(input);
                 return input && input.$valid;
             };
 
             scope.getFieldValidationClass = function() {
                 if (this.fieldHasValidation()) {
+                    console.log(this.fieldIsValid() ? 'has-success' : 'has-error');
                     return this.fieldIsValid() ? 'has-success' : 'has-error';
                 }
             };
